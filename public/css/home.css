@@ -1,0 +1,45 @@
+.home {
+    background-image: url('../img/benyamin-bohlouli-LGXN4OSQSa4-unsplash.jpg');
+    background-size: cover;
+    height: 150vh;
+    margin-top: -5em;
+}
+
+.home h1{
+    text-align: center;
+    padding: 8em;
+}
+
+.grid {
+    width: 100%;
+}
+
+.grid img{
+    background-repeat: no-repeat;
+    height: 150px;
+    width: 150px;
+}
+
+.navbar {
+    width: 100%;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 3em;
+}
+
+.navbar ul :hover {
+    color: rgb(163, 10, 10);
+}
+
+.navbar a {
+    text-decoration: none;
+    font-size: 17px;
+    color: white;
+}

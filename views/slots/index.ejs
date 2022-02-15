@@ -1,0 +1,15 @@
+<div class="slots">
+    <h1>Available Slots</h1>
+
+    <a href="/bookings/add">Book a slot</a>
+    <a href="/slots/add">Add slot</a>
+
+    <% if(typeof slots != 'undefined') { %>
+
+        <% slots.forEach((slot) => { %>
+        <h4>Date: <%= slot.date %></h4>  
+        <h4>Quantity: <%= slot.quantity %></h4>  
+        <% }) %> 
+    <% } %>
+
+</div>

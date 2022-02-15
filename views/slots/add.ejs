@@ -1,0 +1,18 @@
+<div class="slot-form">
+    <h1>Available Slots</h1>
+
+    <form method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div class="input-box">
+            <input type="date" name="date">
+            <label>Date</label>
+        </div>
+
+        <div class="input-box">
+            <input type="number" id="quantity" name="quantity">
+            <span>Quantity</span>
+        </div>
+
+        <button class="send" type="submit" value="Submit">Send</button>
+    </form>
+</div>

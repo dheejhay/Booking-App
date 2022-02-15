@@ -1,0 +1,16 @@
+<div>
+    <h1>Booking Details</h1>
+
+    <a href="/slots">Book </a>
+
+    <% if(typeof bookings !='undefined') { %>
+
+    <% bookings.forEach((booking) => { %>
+    <h4>Name: <%= booking.name %></h4>
+    <h4>Number: <%= booking.phone_number %></h4>
+    <h4>Date: <%= booking.slot.date %></h4>
+    <a href="/booking/edit/<%= booking._id %>">Edit</a>
+    <a href="/booking/delete/<%= booking._id %>">Delete</a>
+    <% }) %>
+    <%  } %>
+</div>

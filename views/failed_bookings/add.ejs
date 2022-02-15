@@ -1,0 +1,25 @@
+<div class="add-form">
+    <h1>Book a Slot</h1>
+
+    <form method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div class="input-box">
+            <input type="text" id="name" name="name" required="required">
+            <span>Name</span>
+        </div>
+
+        <div class="input-box">
+            <input type="number" id="phone_number" name="phone_number" required="required">
+            <span>Phone Number</span>
+        </div>
+
+        <div class="input-box">
+            <input type="date" id="date" name="date">
+            <span>Date</span>
+        </div>
+
+
+        <button class="send" type="submit" value="Submit">Send</button>
+    </form>
+
+</div>

@@ -1,0 +1,15 @@
+    <h1>Failed Booking Details</h1>
+
+    <a href="/bookings">Book<%=  %> </a>
+
+    <% if(typeof failedbookings !='undefined') { %>
+
+    <% failedbookings.forEach((failedbooking) => { %>
+        <h4>Name: <%= failedbooking.name %></h4>
+        <h4>Number: <%= failedbooking.phone_number %></h4>
+        <h4>Date: <%= failedbooking.date %></h4>
+        <a href ="/booking/edit/<%= failedbooking._id %>">Edit</a>
+        <a href ="/booking/delete/<%= failedbooking._id %>">Delete</a>
+    <% }) %> 
+
+    <% } %>

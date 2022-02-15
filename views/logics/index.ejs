@@ -1,0 +1,13 @@
+<h1>Logic Tests</h1>
+<ul>
+    <% if(typeof navigations != 'undefined') { %>
+    <% navigations.forEach(nav => { %>
+            <li>
+                <a href="<%= nav.path %>"><%= nav.name %> </a>
+    <p>Description: <%= nav.description %></p>
+    <span>Date: <%= nav.date %></span>
+    </li>
+    <%  }) %>
+
+    <%  } %>
+</ul>

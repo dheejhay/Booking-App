@@ -1,0 +1,32 @@
+<h1>Waakye logic</h1>
+
+<form method="post" action="">
+    <div>
+        <label for="queue_length">
+            <span>Number of people in a queue</span>
+            <input type="text" name="queue_length" id="queue_length">
+        </label>
+    </div><br>
+    <div>
+        <label for="number_of_women">
+            <span>Number of women in a queue</span>
+            <input type="text" name="number_of_women" id="number_of_women">
+        </label>
+    </div><br>
+    <div>
+        <label for="number_of_men">
+            <span>Number of men in a queue</span>
+            <input type="text" name="number_of_men" id="number_of_men">
+        </label>
+    </div><br>
+    <div>
+        <label for="decision">
+            <span>Decision</span>
+            <textarea name="" id="decision" cols="30" rows="10" disabled>
+                <%= decision %> 
+            </textarea>
+        </label>
+    </div>
+
+    <button type="submit">Send</button>
+</form>

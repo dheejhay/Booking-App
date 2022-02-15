@@ -1,0 +1,28 @@
+<div class="lunch">
+    This is the lunch logic page
+
+    <form method="post" action="">
+        <p>Choose Breakfast</p>
+        <label for="Milo">
+            <input type="radio" id="milo" name="breakfast" value="milo">
+            <span>Milo</span>
+        </label><br>
+        <label for="Porridge">
+            <input type="radio" name="breakfast" value="porridge">
+            <span>Porridge</span>
+        </label><br>
+        <label for="Kenkey">
+            <input type="radio" name="breakfast" value="kenkey">
+            <span>Kenkey</span>
+        </label><br>
+        <label for="No Breakfast">
+            <input type="radio" name="breakfast" value="no breakfast">
+            <span>No Breakfast</span>
+        </label><br>
+    
+        <span>Decision</span>
+        <textarea type="text"><%= decision %> </textarea>
+        <button class="send" type="submit" value="Submit">Send</button>
+
+    </form>
+</div>

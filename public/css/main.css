@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+.nav {
+    width: 100%;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.nav ul {
+    display: flex;
+    list-style: none;
+    gap: 3em;
+}
+
+.nav ul :hover {
+    color: rgb(163, 10, 10);
+}
+
+.nav a {
+    text-decoration: none;
+    font-size: 17px;
+    color: black;
+}
