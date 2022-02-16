@@ -45,6 +45,8 @@ app.use('/failed_bookings', failedBookingRoute)
 const logicRoute = require('./server/routes/logicRoutes');
 app.use('/logics', logicRoute)
 
+const userRoute = require('./server/routes/userRoutes');
+app.use('/users', userRoute)
 
 app.use('*', (req, res) => {
     res.render('errors/404', {root:__dirname})
