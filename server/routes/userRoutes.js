@@ -26,10 +26,19 @@ passport.deserializeUser(function(user, cb) {
     return cb(null, user);
 });
 
+const isLoggedIn =(req, res, next) => {
+    res.locals.loggedIn = false;
+    if(req.isAuthenticated()){
+        res.locals.loggedIn = true;
+        next()
+    }else {
+        res.redirect('/login')
+    }
+}
 
-
-router.get('/users/login', controller.login)
-router.post('/login', passport.authenticate("local", {failureRedirect: "/login"}), controller.doLogin)
+router.get('/login', controller.login)
+router.post('/login', passport.authenticate("local", {failureRedirect: "/login"}), controller.authenticateLogin)
+router.use(isLoggedIn)
 
 
 module.exports = router;

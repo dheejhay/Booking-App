@@ -11,18 +11,19 @@
     <title>Jays Looks</title>
 </head>
 <body>
-   
-    <div class="nav">
-        <h1>Jay's Looks</h1>
-        <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/bookings">Book</a></li>
-        <li><a href="/failed_bookings">Failed Bookings</a></li>
-        <li><a href="/slots">Slot</a></li>
-        <li><a href="/logics">Daily Logics</a></li>
-        <li><a href="/users">Login</a></li>
-        </ul>
-    </div>
+    <% if(typeof isLoggedIn != 'undefined' && isLoggedIn) { %>
+        <div class="nav">
+            <h1>Jay's Looks</h1>
+            <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/bookings">Book</a></li>
+            <li><a href="/failed_bookings">Failed Bookings</a></li>
+            <li><a href="/slots">Slot</a></li>
+            <li><a href="/logics">Daily Logics</a></li>
+            <li><a href="/users/login">Login</a></li>
+            </ul>
+        </div>
+    <% } %> 
     
 
     <%- body %>
