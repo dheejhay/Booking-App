@@ -20,7 +20,8 @@ exports.save = async (req, res) => {
     let user = await User.findOne().where("phone_number").equals(req.body.phone_number)
      user = new User ({
         name: req.body.name,
-        phone_number: req.body.phone_number
+        phone_number: req.body.phone_number,
+        password: req.body.password
     })
 
     if(user == user.phone_number) {
@@ -83,7 +84,11 @@ exports.updateUser = async (req, res) => {
     const user = await User.findOne({phone_number:phone_number})
     user.name = req.body.name
     user.password = req.body.password
-    await User.save()
+    await user.save()
+    res.redirect(302, "/bookings")
+}
+
+exports.saveUser = async (req, res) => {
     res.redirect(302, "/bookings")
 }
 

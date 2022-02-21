@@ -8,10 +8,12 @@
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/booking.css">
+    <link rel="stylesheet" href="/css/login.css">
     <title>Jays Looks</title>
 </head>
 <body>
-    <% if(typeof isLoggedIn != 'undefined' && isLoggedIn) { %>
+    <% if(typeof isLoggedIn !== 'undefined' && isLoggedIn) { %>
         <div class="nav">
             <h1>Jay's Looks</h1>
             <ul>
@@ -20,10 +22,19 @@
             <li><a href="/failed_bookings">Failed Bookings</a></li>
             <li><a href="/slots">Slot</a></li>
             <li><a href="/logics">Daily Logics</a></li>
-            <li><a href="/users/login">Login</a></li>
+            
+            <% if(isAuthenticated){ %>
+                <li><a href="/users/logout">Log Out</a></li>
+            <% } else { %>
+                <li><a href="/users/login">Login</a></li>
+            <% } %>
+            
+           
             </ul>
         </div>
     <% } %> 
+
+ 
     
 
     <%- body %>

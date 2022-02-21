@@ -9,6 +9,7 @@ const controller = require('../controllers/bookingsController')
 router.get('/', controller.index)
 
 router.get('/user', controller.updateUser)
+router.post('/user', controller.saveUser)
 
 router.get('/add', controller.add)
 router.post('/add', controller.save)

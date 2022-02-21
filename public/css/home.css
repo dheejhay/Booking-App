@@ -2,7 +2,7 @@
     background-image: url('../img/benyamin-bohlouli-LGXN4OSQSa4-unsplash.jpg');
     background-size: cover;
     height: 150vh;
-    margin-top: -5em;
+    margin-top: -5.7em;;
 }
 
 .home h1{
@@ -12,12 +12,14 @@
 
 .grid {
     width: 100%;
+    display: flex;
+    gap: 2em;
 }
 
 .grid img{
     background-repeat: no-repeat;
-    height: 150px;
-    width: 150px;
+    height: 140px;
+    width: 140px;
 }
 
 .navbar {

@@ -1,0 +1,42 @@
+.login-page{
+    width: 382px;  
+    margin: auto; 
+    margin-top: 10em;
+    padding: 80px;  
+    background: #23463f;  
+    border-radius: 15px ; 
+}
+
+.login-page h1{
+    text-align: center;
+}
+
+.input-box{
+    position: relative;
+    width: 100%;
+}
+
+.input-box, 
+.input-box textarea {
+    width: 50%;
+    font-size: 16px;
+    margin: 10px 0;
+    outline: none;
+    left: 2em;
+}
+
+.input-box span {
+    width: 300px;  
+    height: 30px;  
+    border: none;  
+    padding-left: 6px;
+    color: #00bcd4;
+}
+
+.send {
+    width: 100px;
+    background: #00bcd4;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+}

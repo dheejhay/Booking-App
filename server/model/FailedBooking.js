@@ -1,11 +1,8 @@
 const mongoose = require('mongoose')
 
 const failedBookingSchema = new mongoose.Schema({
-    name: {
-        type:String
-    },
-    phone_number: {
-        type:Number
+    user: {
+        type: mongoose.Types.ObjectId, ref:'User'
     },
     date: {
         type:Date

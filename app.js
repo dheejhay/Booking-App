@@ -5,6 +5,8 @@ require('dotenv').config();
 const expressSession = require('express-session');
 const cookieParser = require('cookie-parser')
 const csrf = require('csurf');
+var flash = require('connect-flash')
+// const bcrypt = require('bcrypt')
 
 const app = express();
 
@@ -27,7 +29,10 @@ app.use(cors())
 const csrfProtection = csrf({ cookie:true});
 app.use(csrfProtection)
 
+app.use(flash())
 
+const userRoute = require('./server/routes/userRoutes');
+app.use('/', userRoute)
 
 const pageRoute = require('./server/routes/pageRoutes');
 app.use('/', pageRoute)
@@ -45,12 +50,9 @@ app.use('/failed_bookings', failedBookingRoute)
 const logicRoute = require('./server/routes/logicRoutes');
 app.use('/logics', logicRoute)
 
-const userRoute = require('./server/routes/userRoutes');
-app.use('/users', userRoute)
-
-app.use('*', (req, res) => {
-    res.render('errors/404', {root:__dirname})
-})
+// app.use('*', (req, res) => {
+//     res.render('errors/404', {root:__dirname})
+// })
 
 // app.use((error, req, res, next) => {
 //     res.render('errors/internal', {
@@ -60,6 +62,7 @@ app.use('*', (req, res) => {
 //     });
    
 // });
+
 
 const PORT = process.env.PORT || 9595
 app.listen(PORT, () => {
