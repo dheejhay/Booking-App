@@ -5,7 +5,8 @@ require('dotenv').config();
 const expressSession = require('express-session');
 const cookieParser = require('cookie-parser')
 const csrf = require('csurf');
-var flash = require('connect-flash')
+const flash = require('connect-flash')
+
 // const bcrypt = require('bcrypt')
 
 const app = express();
@@ -30,6 +31,7 @@ const csrfProtection = csrf({ cookie:true});
 app.use(csrfProtection)
 
 app.use(flash())
+// app.use(expressBrute())
 
 const userRoute = require('./server/routes/userRoutes');
 app.use('/', userRoute)

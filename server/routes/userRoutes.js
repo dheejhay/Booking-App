@@ -34,71 +34,81 @@ router.use(passport.session());
 // )) 
 
 passport.use(
-    new localStrategy ({ passReqToCallback: true},
+    new localStrategy({
+            passReqToCallback: true
+        },
         async function verify(req, phone_number, password, cb) {
-        // const user = await User.findOne({phone_number:username})
-        console.log(phone_number)
-        console.log(password)
-        const user = ({
-            phone_number: "233203681960",
-            password: "jay@2"
+            // const user = await User.findOne({phone_number:username})
+            console.log(phone_number)
+            console.log(password)
+            const user = ({
+                phone_number: "233203681960",
+                password: "jay@2"
+            })
+            if (user) {
+                if (user.phone_number === phone_number && user.password === password) {
+                    return cb(null, user); //verification successful
+
+                }
+            }
+            return cb(null, false, req.flash('message', 'Invalid phone number or password'))
         })
-        if(user){
-            if(user.phone_number === phone_number && user.password === password ) {
-                return cb(null, user);
-                
-            } 
-        }
-        return cb(null, false, req.flash('message', 'Invalid phone number or password'))
-    })
 );
 
-passport.serializeUser(function(user, cb) {
+passport.serializeUser(function (user, cb) {
     return cb(null, user);
 });
 
-passport.deserializeUser(function(user, cb) {
+passport.deserializeUser(function (user, cb) {
     return cb(null, user);
 });
 
-const isLoggedIn =(req, res, next) => {
-    res.locals.isLoggedIn = false;
-    if(req.isAuthenticated()){
-        res.locals.isLoggedIn = true;
-        next()
-    }else {
-        res.redirect('/users/login')
-    }
-}
 
-const permitted = ["/"];
+// const loginTracker = (req, res) => {
+//     req.session.maxFailedAttempts;
+//     for(let failedLogIn in req.session.maxFailedAttempts){
+//         if(req.session.maxFailedAttempts == 'undefined'){
+//             req.session.maxFailedAttempts -= 1; 
+//         }
+
+//     }
+//     console.log(req.session.maxFailedAttempts)
+// }
+
+// const permitted = ["/"];
 
 const checkAuthentication = (req, res, next) => {
-    res.locals.isAuthenticated = false;
+    res.locals.isLoggedIn = false;
     res.locals.whitelisted = false;
 
-    if(req.path === permitted){
+    if (req.path === '/') {
         res.locals.whitelisted = true;
-    }
-    if(req.isAuthenticated()){
-        res.locals.isAuthenticated = true;
-    }else {
-        return res.redirect('users/login')
+        if (req.isAuthenticated()) {
+            res.locals.isLoggedIn = true;
+        }
+    } else {
+        if (req.isAuthenticated()) {
+            res.locals.isLoggedIn = true;
+        } else {
+            return res.redirect('users/login')
+        }
     }
     next();
 }
+
 
 // router.get('/users/signup', controller.signup)
 // router.post('/users/signup', controller.sign)
 router.get('/users/login', controller.login)
 router.get('/users/logout', controller.logout)
 router.post('/users/login', passport.authenticate("local", {
-    failureRedirect: "/login",  
-    failureFlash: true}),
+        failureRedirect: "/login",
+        failureFlash: true
+    }),
     controller.authenticateLogin)
 
-router.use(isLoggedIn)
 router.use(checkAuthentication)
+// router.use(loginTracker)
 
 router.get('/profile', controller.profile)
 
