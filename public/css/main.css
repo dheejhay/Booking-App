@@ -20,7 +20,7 @@
 }
 
 .nav ul :hover {
-    color: rgb(163, 10, 10);
+    color: rgb(243, 119, 10);
 }
 
 .nav a {
@@ -31,4 +31,17 @@
 
 .nav h1{
     font-family: Gabriola;
+    color: rgb(243, 119, 10);
+}
+
+.footer {
+    margin-top:-3em;
+}
+
+.footer-icons {
+    padding-left: 35em;
+    display: flex;
+    gap: 1em;
+    font-size: 20px;
+    margin-top:-1em;
 }

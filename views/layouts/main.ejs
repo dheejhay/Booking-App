@@ -1,44 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/home.css">
     <link rel="stylesheet" href="/css/booking.css">
     <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/failedbooking.css">
+    <link rel="stylesheet" href="/css/slot.css">
     <title>Jays Looks</title>
 </head>
+
 <body>
     <% if((typeof isLoggedIn !== 'undefined' && isLoggedIn) || (typeof whitelisted !== 'undefined' && whitelisted)) { %>
 
-        <div class="nav">
-            <h1>Jay's Looks</h1>
-            <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/bookings">Book</a></li>
-            <li><a href="/failed_bookings">Failed Bookings</a></li>
-            <li><a href="/slots">Slot</a></li>
-            <li><a href="/logics">Daily Logics</a></li>
-            
-            <% if(isLoggedIn){ %>
-                <li><a href="/users/logout">Log Out</a></li>
-            <% } else { %>
-                <li><a href="/users/login">Login</a></li>
-            <% } %>
-            
-           
-            </ul>
-        </div>
-    <% } %> 
+    <div class="nav">
+        <h1>Jay's Looks</h1>
+        <ul>
+            <% if(typeof user !== 'undefined' && user.role === 'user') {%>
+                <% navs.forEach(nav => { %>
+                    <li>
+                        <a href="<%= nav.url %>"<%= nav.name %>></a>
+                    </li>
+               <% }) %> 
+               
+               <% } %>
+            <!-- <li><a href="/logics">Daily Logics</a></li> -->
 
- 
-    
+
+        </ul>
+    </div>
+    <% } %>
 
     <%- body %>
-    
+
+    <div class="footer">
+        <span> Designed by<a href="http://DeeJay.com/" target="_blank">
+                DeeJay.com</a></span>
+
+        <div class="footer-icons">
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-linkedin-in"></i>
+            <i class="fab fa-instagram"></i>
+        </div>
+
+    </div>
+
 </body>
+
 </html>

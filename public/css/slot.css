@@ -1,11 +1,11 @@
-.booking{
-    background-image: url('../img/adam-winger-KVVjmb3IIL8-unsplash.jpg');
+.slots{
+    background-image: url('../img/raphael-lovaski-pxax5WuM7eY-unsplash.jpg');
     background-size: cover;
     height: 110vh;
-    margin-top: -5.6em;
+    margin-top: -5.7em;
 }
 
-.booking h1{
+.slots h1{
     padding: 3em;
     text-align: center;
 }
@@ -14,16 +14,22 @@
     display: flex;
     flex-wrap: wrap;
     gap: 3em;
+    padding-left: 4em;
 }
 
-.book-card{
+.slot-card{
     background-color: rgba(0, 0, 0, 0.719);
     border-radius: 10px;
     width :20em;
     height: 8em;
 }
 
-.book-card h4, a{
-    color: white;
+.slot-card h4{
     margin: 0.5em;
+    color: white;
+}
+
+.slots a {
+    color: black;
+    padding-left: 2em;
 }

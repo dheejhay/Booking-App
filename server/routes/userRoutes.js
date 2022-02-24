@@ -39,8 +39,6 @@ passport.use(
         },
         async function verify(req, phone_number, password, cb) {
             // const user = await User.findOne({phone_number:username})
-            console.log(phone_number)
-            console.log(password)
             const user = ({
                 phone_number: "233203681960",
                 password: "jay@2"
@@ -77,12 +75,34 @@ passport.deserializeUser(function (user, cb) {
 
 // const permitted = ["/"];
 
+const showNav = (req, res, next) => {
+    let nav = [{name: "Home", url: "/"}];
+    if (req.user) {
+        if (req.user.role == 'user') {
+            let loadNav = { name: "Book", url: "/bookings"};
+            nav.push(loadNav);
+        } else {
+            let adminNav = [{ name: "Slot", url: "/slots"}, { name: "Failed Bookings", url: "/failed_bookings" }];
+            nav = nav.concat(adminNav);
+        }
+        if(req.isAuthenticated()){
+            nav.push({name: "Logout", url: "/users/logout",})
+        } else {
+          nav.push({name: "Login", url: "/users/login",})
+        }
+       
+    }
+    res.locals.nav = nav;
+    next();
+}
+
 const checkAuthentication = (req, res, next) => {
     res.locals.isLoggedIn = false;
     res.locals.whitelisted = false;
 
     if (req.path === '/') {
         res.locals.whitelisted = true;
+
         if (req.isAuthenticated()) {
             res.locals.isLoggedIn = true;
         }
@@ -93,9 +113,9 @@ const checkAuthentication = (req, res, next) => {
             return res.redirect('users/login')
         }
     }
+    res.locals.user = req.user || {};
     next();
-}
-
+};
 
 // router.get('/users/signup', controller.signup)
 // router.post('/users/signup', controller.sign)
@@ -108,6 +128,7 @@ router.post('/users/login', passport.authenticate("local", {
     controller.authenticateLogin)
 
 router.use(checkAuthentication)
+router.use(showNav)
 // router.use(loginTracker)
 
 router.get('/profile', controller.profile)

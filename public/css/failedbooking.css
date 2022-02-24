@@ -1,11 +1,11 @@
-.booking{
-    background-image: url('../img/adam-winger-KVVjmb3IIL8-unsplash.jpg');
+.failedbook{
+    background-image: url('../img/adam-winger-3nBzt3Jdeh4-unsplash.jpg');
     background-size: cover;
     height: 110vh;
     margin-top: -5.6em;
 }
 
-.booking h1{
+.failedbook h1{
     padding: 3em;
     text-align: center;
 }
@@ -14,16 +14,17 @@
     display: flex;
     flex-wrap: wrap;
     gap: 3em;
+    padding-left: 4em;
 }
 
-.book-card{
+.failed-card{
     background-color: rgba(0, 0, 0, 0.719);
     border-radius: 10px;
     width :20em;
     height: 8em;
 }
 
-.book-card h4, a{
+.failed-card h4, a{
     color: white;
     margin: 0.5em;
 }

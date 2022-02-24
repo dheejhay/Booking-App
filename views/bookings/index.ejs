@@ -1,15 +1,19 @@
 <div class="booking">
     <h1>Bookings</h1>
 
-    <% if(typeof bookings !='undefined') { %>
+    <div class="details">
+        <% if(typeof bookings !='undefined') { %>
 
-    <% bookings.forEach((booking) => { %>
-    <h4>Name: <%= booking.name %></h4>
-    <h4>Number: <%= booking.phone_number %></h4>
-    <h4>Date: <%= booking.slot.date %></h4>
-    <a href="/slots">Book </a>
-    <a href="/booking/edit/<%= booking._id %>">Edit</a>
-    <a href="/booking/delete/<%= booking._id %>">Delete</a>
-    <% }) %>
-    <%  } %>
+            <% bookings.forEach((booking) => { %>
+                <div class="book-card">
+                    <h4>Name: <%= booking.name %></h4>
+                    <h4>Number: <%= booking.phone_number %></h4>
+                    <h4>Date: <%= booking.slot.date %></h4>
+                    <a href="/slots">Book </a>
+                    <a href="/booking/edit/<%= booking._id %>">Edit</a>
+                    <a href="/booking/delete/<%= booking._id %>">Delete</a>
+                </div>
+            <% }) %>
+            <%  } %>
+    </div>
 </div>

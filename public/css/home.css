@@ -1,5 +1,5 @@
 .home {
-    background-image: url('../img/benyamin-bohlouli-LGXN4OSQSa4-unsplash.jpg');
+    background-image: url('../img/andrea-donato-MGt5tcLebds-unsplash.jpg');
     background-size: cover;
     height: 150vh;
     margin-top: -5.7em;;
@@ -7,9 +7,33 @@
 
 .home h1{
     text-align: center;
-    padding: 8em;
+    padding: 6em;
 }
 
+.home h3{
+    text-align: center;
+    padding-top: -2em;
+}
+
+.search {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btn {
+    padding-left: 16.5em;
+    margin-top: -1.5em;
+}
+
+input {
+    border: 3px solid ;
+    height: 40px;
+    width: 300px;
+    border-radius: 50px;
+    padding: 0px 10px;
+}
 .grid {
     width: 100%;
     display: flex;
@@ -20,6 +44,7 @@
     background-repeat: no-repeat;
     height: 140px;
     width: 140px;
+    clip-path: circle();
 }
 
 .navbar {
@@ -37,11 +62,11 @@
 }
 
 .navbar ul :hover {
-    color: rgb(163, 10, 10);
+    color: rgb(243, 119, 10);
 }
 
 .navbar a {
     text-decoration: none;
     font-size: 17px;
-    color: white;
+    color: rgb(243, 119, 10);
 }
