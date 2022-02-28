@@ -7,8 +7,6 @@ const cookieParser = require('cookie-parser')
 const csrf = require('csurf');
 const flash = require('connect-flash')
 
-// const bcrypt = require('bcrypt')
-
 const app = express();
 
 app.set('layout', './layouts/main')
@@ -31,6 +29,7 @@ const csrfProtection = csrf({ cookie:true});
 app.use(csrfProtection)
 
 app.use(flash())
+
 // app.use(expressBrute())
 
 const userRoute = require('./server/routes/userRoutes');

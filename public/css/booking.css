@@ -10,10 +10,18 @@
     text-align: center;
 }
 
+.booking a {
+    color: black;
+}
+
 .details {
     display: flex;
     flex-wrap: wrap;
     gap: 3em;
+}
+
+.details a {
+    color: white;
 }
 
 .book-card{
@@ -26,4 +34,8 @@
 .book-card h4, a{
     color: white;
     margin: 0.5em;
+}
+
+.input-box {
+    left: 0.3em;
 }

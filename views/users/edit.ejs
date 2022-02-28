@@ -1,0 +1,29 @@
+<div class="edit-form">
+    <h1>Edit Details</h1>
+
+    <form method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div class="input-box">
+            <input type="text" name="name" value="<%= user.name %>" required="required">
+            <span>Name</span>
+        </div>
+
+        <div class="input-box">
+            <input type="number" name="phone_number" value="<%= user.phone_number %>" required="required">
+            <span>Phone Number</span>
+        </div>
+
+        <div class="input-box">
+            <input type="password" name="password" value="<%= user.password %>" required="required">
+            <span>Password</span>
+        </div>
+
+        <div class="input-box">
+            <input type="text" name="role" value="<%= user.role %>">
+            <span>Role</span>
+        </div>
+
+        <button class="send" type="submit" value="Submit">Send</button>
+    </form>
+
+</div>

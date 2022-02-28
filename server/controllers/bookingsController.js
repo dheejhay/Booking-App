@@ -5,8 +5,11 @@ const Slot = require('../model/Slot')
 const FailedBooking = require('../model/FailedBooking')
 const User = require('../model/User')
 
+const bcrypt = require('bcrypt')
+
+
 exports.index = async (req, res) => {
-    const bookings = await Booking.find({}).populate('slot')
+    const bookings = await Booking.find({}).populate(['slot', 'user'])
     res.render('bookings/index', {
         title: 'booking',
         bookings
@@ -26,14 +29,15 @@ const findUser = async (phone_number) => {
     let user = await User.findOne({
         phone_number: phone_number
     })
-    console.log(user)
+
     if (!user) { 
-        let user = new User({
+       
+         user = new User({
             name: "",
             phone_number: phone_number,
-            password: ""
+            password:""
         })
-        await user.save()
+      user =  await user.save()
     }
     return user
 }
@@ -41,7 +45,7 @@ exports.save = async (req, res) => {
     let phone_number = req.body.phone_number
     
     const user = await findUser(phone_number)
-    console.log(user)
+  
     // let user = await User.findOne().where("phone_number").equals(req.body.phone_number)
     //  user = new User ({
     //     name: req.body.name,
@@ -68,7 +72,7 @@ exports.save = async (req, res) => {
             })
             await booking.save()
 
-            var decrement = slot.quantity - 1
+            let decrement = slot.quantity - 1
             await Slot.updateOne({
                 _id: slot._id
             }, {
@@ -77,7 +81,7 @@ exports.save = async (req, res) => {
 
             if (!user.name) {
                 return res.render('bookings/user', {
-                    title: "form-user",
+                    title: "form-user", phone_number,
                     csrfToken: req.csrfToken()
                 })
             } else {
@@ -105,30 +109,32 @@ exports.save = async (req, res) => {
 }
 
 exports.updateUser = async (req, res) => {
-    phone_number = req.body.phone_number
+    console.log(req.body)
+    let phone_number = req.body.phone_number
     const user = await User.findOne({
         phone_number: phone_number
-    })
+    }) 
+  
+    let hashedPassword = await bcrypt.hash(req.body.password, 10)
+
     user.name = req.body.name
-    user.password = req.body.password
-    console.log(req)
+    user.password = hashedPassword
+    
+    
     await user.save()
+    console.log(user)
 
     res.redirect(302, "/bookings")
 }
 
-exports.saveUser = async (req, res) => {
-    res.redirect(302, "/bookings")
-}
-
-exports.edit = async (req, res) => {
-    const id = req.params.slot_id
-    const booking = await Booking.findById(id)
-    res.render('bookings/edit', {
-        title: 'edit',
-        booking
-    })
-}
+// exports.edit = async (req, res) => {
+//     const id = req.params.slot_id
+//     const booking = await Booking.findById(id)
+//     res.render('bookings/edit', {
+//         title: 'edit',
+//         booking
+//     })
+// }
 
 exports.update = async (req, res) => {
     const id = req.params.slot

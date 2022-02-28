@@ -1,13 +1,12 @@
-.slots{
-    background-image: url('../img/raphael-lovaski-pxax5WuM7eY-unsplash.jpg');
+.users{
+    background-image: url('../img/greg-trowman-jsuWg7IXx1k-unsplash.jpg');
     background-size: cover;
     height: 110vh;
-    margin-top: -5.7em;
 }
 
-.slots h1{
-    padding: 3em;
+.users h1{
     text-align: center;
+    color: white;
 }
 
 .details {
@@ -15,21 +14,21 @@
     flex-wrap: wrap;
     gap: 3em;
     padding-left: 4em;
+    padding-top: 3em;
 }
 
-.slot-card{
+.user-card{
     background-color: rgba(0, 0, 0, 0.719);
     border-radius: 10px;
-    width :20em;
-    height: 8em;
+    width :35em;
+    height: 10em;
 }
 
-.slot-card h4{
+.user-card h4{
     margin: 0.5em;
     color: white;
 }
 
-.slots a {
-    color: white;
-    padding-left: 4em;
+.delete a {
+    color: black;
 }

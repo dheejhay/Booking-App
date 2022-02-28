@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/css/login.css">
     <link rel="stylesheet" href="/css/failedbooking.css">
     <link rel="stylesheet" href="/css/slot.css">
+    <link rel="stylesheet" href="/css/users.css">
     <title>Jays Looks</title>
 </head>
 
@@ -22,10 +23,10 @@
     <div class="nav">
         <h1>Jay's Looks</h1>
         <ul>
-            <% if(typeof user !== 'undefined' && user.role === 'user') {%>
-                <% navs.forEach(nav => { %>
+            <% if(typeof navigation !== 'undefined') {%>
+                <% navigation.forEach(nav => { %>
                     <li>
-                        <a href="<%= nav.url %>"<%= nav.name %>></a>
+                        <a href="<%= nav.url %>"><%= nav.name %></a>
                     </li>
                <% }) %> 
                
@@ -39,7 +40,7 @@
 
     <%- body %>
 
-    <div class="footer">
+    <!-- <div class="footer">
         <span> Designed by<a href="http://DeeJay.com/" target="_blank">
                 DeeJay.com</a></span>
 
@@ -47,7 +48,7 @@
             <i class="fab fa-twitter"></i>
             <i class="fab fa-linkedin-in"></i>
             <i class="fab fa-instagram"></i>
-        </div>
+        </div> -->
 
     </div>
 
