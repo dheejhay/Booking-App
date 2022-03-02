@@ -41,11 +41,16 @@ passport.use(
            let user = await User.findOne({phone_number:username})
            
             if (user) {
+                if(user.active){
                 const passwordVerified = await bcrypt.compare(password, user.password);
                 if(passwordVerified) {
                         return cb(null, user); //verification successful
                 }    
+            } else {
+                return cb(null, false, req.flash('message', 'Account has been deactivated'))
             }
+        }
+            // loginTracker(req, user)
             return cb(null, false, req.flash('message', 'Invalid phone number or password'))
         })
 );
@@ -59,15 +64,18 @@ passport.deserializeUser(function (user, cb) {
 });
 
 
-// const loginTracker = (req, res) => {
-//     req.session.maxFailedAttempts;
-//     for(let failedLogIn in req.session.maxFailedAttempts){
-//         if(req.session.maxFailedAttempts == 'undefined'){
-//             req.session.maxFailedAttempts -= 1; 
-//         }
-
-//     }
-//     console.log(req.session.maxFailedAttempts)
+// const loginTracker = async (req, user) => {
+//    const session = req.session
+//    if(!session.maxFailedAttempt){
+//         session.maxFailedAttempt = 5
+//    } else {
+//        session.maxFailedAttempt -=1
+//        if(session.maxFailedAttempt < 1){
+//             user.active = false
+//             await user.save()
+//        }
+//    }
+//    console.log(session.maxFailedAttempt)
 // }
 
 // const permitted = ["/"];
@@ -83,10 +91,11 @@ const showNav = (req, res, next) => {
             let adminNav = [{ name: "Slot", url: "/slots"}, 
             { name: "Book", url: "/bookings"},
             { name: "Failed Bookings", url: "/failed_bookings" }, 
-            {name: "Users", url: "/users/index"}];
+            {name: "Users", url: "/users"}];
             nav = nav.concat(adminNav);
         }  
     }
+
     if(req.isAuthenticated()){
         nav.push({name: "Logout", url: "/users/logout"})
     } else {
@@ -126,19 +135,22 @@ router.post('/users/login', passport.authenticate("local", {
         failureFlash: true
     }),
     controller.authenticateLogin)
-router.get('/users/index', controller.index)
+
+router.use(checkAuthentication)
+router.use(showNav)
+
+router.get('/users/unauthorised', controller.unauthorised)
+router.get('/users', controller.index)
 
 router.get('/users/add', controller.add) 
 router.post('/users/add', controller.save)   
 
-router.get('/users/edit/:user_id', controller.edit) 
-router.post('/users/edit/:user_id', controller.update)  
+router.get('/users/edit/:id', controller.edit) 
+router.post('/users/edit/:id', controller.update)  
 
-router.get('/users/delete/:user_id', controller.confirm) 
-router.post('/users/delete/:user_id', controller.delete)   
+router.get('/users/delete/:id', controller.confirm) 
+router.post('/users/delete/:id', controller.delete)   
 
-router.use(checkAuthentication)
-router.use(showNav)
 // router.use(loginTracker)
 
 module.exports = router;

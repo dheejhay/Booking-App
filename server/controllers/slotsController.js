@@ -5,7 +5,7 @@ const Slot = require('../model/Slot')
 exports.index = async(req, res) => {
 const slots = await Slot.find({})
 // console.log(slots)
-    res.render('slots/index', {title: 'slot', slots})
+    res.render('slots/index', {title: 'slot', slots, activeNav: "Slot"})
 }
 
 exports.add = async(req, res) => {
@@ -14,7 +14,7 @@ exports.add = async(req, res) => {
 
     } catch (error) {
         console.log('Error')
-        res.render('errors/404')
+        res.render('errors/404', {title: 'error'})
     }
     
 }
@@ -27,10 +27,10 @@ exports.save = async(req, res) => {
         });
         await slot.save()
         console.log(slot)
-        res.render('slots/index')
+        res.render('slots/index', {title: 'slots'})
     } catch (error) {
         console.log('error')
-        res.render('errors/404')
+        res.render('errors/404', {title: 'slots'})
     }
     
 }
@@ -40,7 +40,7 @@ exports.edit = async(req, res) => {
 }
 
 exports.update = async(req, res) => {
-    res.render('slots/edit')
+    res.render('slots/edit', {title: 'slots'})
 }
 
 exports.confirm = async(req, res) => {
@@ -48,5 +48,5 @@ exports.confirm = async(req, res) => {
 }
 
 exports.delete = async(req, res) => {
-    res.render('slots/delete')
+    res.render('slots/delete', {title: 'delete'})
 }

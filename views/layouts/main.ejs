@@ -25,11 +25,13 @@
         <ul>
             <% if(typeof navigation !== 'undefined') {%>
                 <% navigation.forEach(nav => { %>
-                    <li>
+
+                    <li 
+                        class="<%= (typeof activeNav != 'undefined' && activeNav == nav.name)?'nav-active':''%>">
                         <a href="<%= nav.url %>"><%= nav.name %></a>
                     </li>
-               <% }) %> 
-               
+
+               <% }) %>  
                <% } %>
             <!-- <li><a href="/logics">Daily Logics</a></li> -->
 
@@ -46,7 +48,7 @@
 
         <div class="footer-icons">
             <i class="fab fa-twitter"></i>
-            <i class="fab fa-linkedin-in"></i>
+           ] <i class="fab fa-linkedin-in"></i>
             <i class="fab fa-instagram"></i>
         </div> -->
 

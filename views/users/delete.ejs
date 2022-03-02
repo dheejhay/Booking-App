@@ -2,7 +2,8 @@
     <h4>Are you sure you want to delete?</h4>
 
     <form method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <button value="submit">YES</button> 
-        <a href="/menus">NO</a>
+        <a href="/users">NO</a>
     </form>
 </div>

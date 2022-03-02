@@ -10,19 +10,13 @@ const bcrypt = require('bcrypt')
 
 exports.index = async (req, res) => {
     const bookings = await Booking.find({}).populate(['slot', 'user'])
-    res.render('bookings/index', {
-        title: 'booking',
-        bookings
-    })
+    res.render('bookings/index', {title: 'Booking', bookings, activeNav: "Book"})
 }
 
 exports.add = async (req, res) => {
     const slot = await Slot.find({})
     res.render('bookings/add', {
-        title: 'booking',
-        slot,
-        csrfToken: req.csrfToken()
-    })
+        title: 'booking', slot, activeNav: "Booking", csrfToken: req.csrfToken()})
 }
 
 const findUser = async (phone_number) => {
@@ -45,13 +39,6 @@ exports.save = async (req, res) => {
     let phone_number = req.body.phone_number
     
     const user = await findUser(phone_number)
-  
-    // let user = await User.findOne().where("phone_number").equals(req.body.phone_number)
-    //  user = new User ({
-    //     name: req.body.name,
-    //     phone_number: req.body.phone_number,
-    //     password: req.body.password
-    // })
 
     let booking_date = req.body.date
     const next_date = new Date(booking_date);
@@ -81,9 +68,7 @@ exports.save = async (req, res) => {
 
             if (!user.name) {
                 return res.render('bookings/user', {
-                    title: "form-user", phone_number,
-                    csrfToken: req.csrfToken()
-                })
+                    title: "form-user", phone_number, activeNav: "Booking", csrfToken: req.csrfToken()})
             } else {
                 return res.redirect(302, "/bookings")
             }
@@ -101,11 +86,6 @@ exports.save = async (req, res) => {
         await failedbooking.save()
         res.render('failed_bookings/index')
     }
-
-
-
-    // res.render('bookings/add', {title: 'booking'})
-
 }
 
 exports.updateUser = async (req, res) => {
@@ -146,5 +126,5 @@ exports.update = async (req, res) => {
         date: (req.body.date),
         slot: req.body.slot
     })
-    res.render('bookings/edit')
+    res.render('bookings/edit', {title: 'edit'})
 }

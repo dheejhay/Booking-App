@@ -1,19 +1,25 @@
 .login-page{
-    width: 382px;  
-    margin: auto; 
+    border: 3px solid black;
+    min-height: 50vh;
+    width: 500px;
+    margin: auto;
     margin-top: 10em;
-    padding: 80px;  
-    background: #23463f;  
-    border-radius: 15px ; 
+}
+body{
+    background-image:linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('../img/andrea-donato-xIYzPKPYqQg-unsplash.jpg');
+    background-size: cover;
+    height: 75vh;
 }
 
-.login-page h1{
+.form h1 {
     text-align: center;
+    padding-top: 1.5em;
+    color: rgb(252, 119, 4);
 }
 
 .input-box{
-    position: relative;
     width: 100%;
+    padding-left: 6em;
 }
 
 .input-box, 
@@ -22,7 +28,6 @@
     font-size: 16px;
     margin: 10px 0;
     outline: none;
-    right: 2em;
 }
 
 .input-box span {
@@ -30,13 +35,16 @@
     height: 30px;  
     border: none;  
     padding-left: 10px;
-    color: #00bcd4;
+    color: rgb(252, 119, 4);
 }
 
 .send {
     width: 100px;
-    background: #00bcd4;
+    height: 30px;
+    background: rgb(243, 119, 10);
     color: #fff;
     cursor: pointer;
     font-size: 18px;
+    margin-left: 11em;
+    border-radius: 10px;
 }

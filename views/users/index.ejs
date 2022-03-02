@@ -4,18 +4,18 @@
     <a href="/users/add">Add a User</a>
 
     <div class="details">
-        <% if(typeof users !='undefined') { %>
+
+        <% if(typeof users !='undefined' && users) { %>
 
             <% users.forEach((user) => { %>
                 <div class="user-card">
                     <h4>Name: <%= user.name %></h4>
                     <h4>Number: <%= user.phone_number %></h4>
-                    <h4>Password: <%= user.password %></h4>
                     <h4>Role: <%= user.role %></h4>
                     <a href="/users/edit/<%= user._id %>">Edit</a>
                     <a href="/users/delete/<%= user._id %>">Delete</a>
                 </div>
             <% }) %>
-            <%  } %>
+            <% } %> 
     </div>
 </div>

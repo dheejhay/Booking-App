@@ -3,7 +3,8 @@
     <% if (message !== 'undefined') { %>
         <%= message %>
    <%  } %> 
-     
+    
+   <div class="form">
     <h1>Login Form</h1>
     <form method="post" action="/users/login">
         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
@@ -18,5 +19,6 @@
 
         <button class="send" type="submit" value="Submit">Log In</button>
     </form>
+   </div>
 
 </div>

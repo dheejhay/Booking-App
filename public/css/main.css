@@ -34,7 +34,11 @@
     color: rgb(243, 119, 10);
 }
 
-.footer {
+.nav-active {
+    background-color: rgb(252, 119, 4);
+}
+
+/* .footer {
     margin-top:-3em;
 }
 
@@ -44,4 +48,4 @@
     gap: 1em;
     font-size: 20px;
     margin-top:-1em;
-}
+} */

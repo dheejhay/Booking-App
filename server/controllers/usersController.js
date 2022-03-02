@@ -1,8 +1,8 @@
 require('../model/mongooseConnection')
 
 const User = require('../model/User')
-
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const Util = require('./common');
 
 // exports.signup = async(req,res) => {
 //     res.render('users/signup')
@@ -40,10 +40,16 @@ exports.authenticateLogin = async(req, res) => {
     }
 }
 
+exports.unauthorised = async(req, res) => {
+    res.render('users/unauthorised', {title: "Unauthorised User"})
+}
+
 exports.index = async(req, res) => {
-    const users = await User.find({})
-        res.render('users/index', {title: 'user', users})
-    }
+  const authorizedRoles = ["admin"];
+  Util.checkAuthorization(req, res, authorizedRoles);
+
+  const users = await User.find({})
+} 
 
 exports.add = async(req, res) => {
     res.render('users/add', {title: 'user',  csrfToken:req.csrfToken()})
@@ -55,42 +61,38 @@ exports.save = async(req, res) => {
         name: req.body.name,
         phone_number: req.body.phone_number,
         password: hashedPassword,
-  
         role: req.body.role
     })
     await user.save()
-    res.render('users/index')
+    res.redirect(302, '/users')
 }
 
 exports.edit = async(req, res) => {
-    const user = await User.findById(req.params.user_id)
+    const user = await User.findById(req.params.id)
     res.render('users/edit', {title: 'edit', user,  csrfToken:req.csrfToken()})
 }
 
 exports.update = async(req, res) => {
-    const message = req.flash().message
-    let hashedPassword = await bcrypt.hash(req.body.password, 10)
-    const user = await User.updateOne({_id: req.params.user_id},
+    const user = await User.updateOne({_id: req.params.id},
         {
             name: req.body.name,
             phone_number: req.body.phone_number,
-            password: hashedPassword,
             role: req.body.role  
         })
-       
-    res.render('users/index', {message: "Details updated succesfully", user})
+    res.redirect(302, '/users')
 }
 
 exports.confirm = async(req, res) => {
-    res.render('users/delete', {title: 'delete'})
+    const user = await User.findById(req.params.id)
+    res.render('users/delete', {title: 'delete', user, csrfToken:req.csrfToken()})
 }
 
 exports.delete = async(req, res) => {
-    const user = await User.deleteOne({_id: req.params.user_id})
-    res.redirect(302, 'users/index', {title: 'delete', user})
+    const user = await User.deleteOne({_id: req.params.id})
+    res.redirect(302, '/users')
 }
 
 exports.logout = async(req,res) => {
     req.logout()
-    res.render('users/logout')
+    res.render('users/logout', {title: 'logout'})
 } 

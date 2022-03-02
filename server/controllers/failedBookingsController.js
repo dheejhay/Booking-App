@@ -11,7 +11,7 @@ exports.index = async(req, res) => {
 
 exports.add = async(req, res) => {
 
-    res.render('failedBookings/add')
+    res.render('failedBookings/add', {title: 'failedbooking'})
 }
 
 exports.save = async(req, res) => {
